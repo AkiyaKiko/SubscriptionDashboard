@@ -18,16 +18,24 @@ export default function RouteEdit() {
   useEffect(() => {
     let isMounted = true;
     (async () => {
-      const res: ActionResultType<SubType | null> = await getSubUri();
-      if (isMounted && res.ok && res.msg) {
-        console.log("Fetched URI:", res.msg.uri);
-        setSub(res.msg.uri as string);
-        setLoading(false);
-      } else if (typeof res.msg === "object" && !res.ok) {
-        console.error("Failed to fetch URI:", res.msg);
-        setLoading(false);
+      try {
+        const res: ActionResultType<SubType | null> = await getSubUri();
+
+        if (!isMounted) return;
+
+        if (res.ok) {
+          // msg 可能为 null，所以要兜底
+          setSub(res.msg?.uri ?? "");
+        } else {
+          console.error("Failed to fetch URI:", res.msg);
+        }
+      } catch (err) {
+        console.error("getSubUri error:", err);
+      } finally {
+        if (isMounted) setLoading(false);
       }
     })();
+
     return () => {
       isMounted = false;
     };
