@@ -31,6 +31,7 @@ pnpm install
 
 ```bash
 pnpx prisma migrate deploy
+pnpx prisma generate
 ```
 
 （开发时也可以使用 `pnpx prisma migrate dev` 来创建与应用迁移并启动本地数据库）
