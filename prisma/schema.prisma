@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Link {
+  id     Int     @id @default(autoincrement())
+  name   String
+  link   String  @unique
+  enable Boolean @default(true)
+
+  @@map("links")
+}
+
+model Subscription {
+  id  Int    @id @default(1)
+  uri String @unique
+
+  @@map("subscriptions")
+}
+
+model Admin {
+  id       Int    @id @default(1)
+  username String @unique
+  password String
+
+  @@map("admins")
+}
