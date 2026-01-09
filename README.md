@@ -4,7 +4,7 @@
 
 这是一个基于 Next.js 的代理订阅管理系统，实现订阅配置的管理与导出（或展示）。项目使用 Prisma 与 SQLite 做为开发/轻量级生产数据库，客户端通过生成的 Prisma Client 与数据库交互。  
 
-> PS: 其实很原理简单，只是想要用 NextJS 练练手
+> PS: 其实原理很简单，只是想要用 NextJS 练练手
 
 **技术栈概览**
 - 前端/后端：Next.js（App Router）
